@@ -4,4 +4,8 @@ const subscriberSchema = new mongoose.Schema({
     name: {
         
     }
+
+    test: {
+        
+    }
 })
