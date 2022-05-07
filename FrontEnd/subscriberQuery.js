@@ -13,10 +13,12 @@ const listSubscribers = (res) => {
 
   res.forEach((element) => {
     let li = document.createElement("li");
-    li.id = element._id;
-    li.appendChild(
-      document.createTextNode(element.name)
-    );
+    let btn = document.createElement("button");
+    btn.innerHTML = "Delete";
+    btn.value = element._id;
+    btn.classList.add("deleteSubscriber");
+    li.appendChild(document.createTextNode(element.name));
+    li.appendChild(btn);
     subscriberList.appendChild(li);
     subscriberListFull = res;
   });
@@ -51,13 +53,16 @@ const addSubscriber = async () => {
   queryAll();
 };
 
-const deleteSubscriber = async () => {
+const deleteSubscriber = async (event) => {
   console.log("clicked");
-  let subscriberName = document.querySelector("#SubscriberName").value;
 
-  let subscriberID = subscriberListFull.find(element => element.name === subscriberName)._id;
+  if (event.target.value == null || event.target.value == 0) {
+    return console.log("Delete Button Not Clicked");
+  }
 
-  console.log('subscriberID')
+  let subscriberID = event.target.value;
+
+  console.log(subscriberID);
 
   let fetchURL = "http://localhost:3000/subscribers/" + String(subscriberID);
 
@@ -83,5 +88,5 @@ document
   .addEventListener("click", addSubscriber);
 
 document
-  .querySelector("#deleteSubscriber")
+  .querySelector("#subscriberList")
   .addEventListener("click", deleteSubscriber);
