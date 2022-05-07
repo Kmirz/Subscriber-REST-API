@@ -1,3 +1,5 @@
+let subscriberListFull = [];
+
 const queryAll = async () => {
   let subscriberList = document.querySelector("#subscriberList");
   subscriberList.innerHTML = "";
@@ -16,6 +18,7 @@ const listSubscribers = (res) => {
       document.createTextNode(element.name)
     );
     subscriberList.appendChild(li);
+    subscriberListFull = res;
   });
 };
 
@@ -50,7 +53,11 @@ const addSubscriber = async () => {
 
 const deleteSubscriber = async () => {
   console.log("clicked");
-  let subscriberID = document.querySelector("#SubscriberID").value;
+  let subscriberName = document.querySelector("#SubscriberName").value;
+
+  let subscriberID = subscriberListFull.find(element => element.name === subscriberName)._id;
+
+  console.log('subscriberID')
 
   let fetchURL = "http://localhost:3000/subscribers/" + String(subscriberID);
 
@@ -64,7 +71,7 @@ const deleteSubscriber = async () => {
     console.log(err)
   );
 
-  document.querySelector("#SubscriberID").value = "";
+  document.querySelector("#SubscriberName").value = "";
 
   queryAll();
 };
