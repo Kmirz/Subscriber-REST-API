@@ -7,22 +7,15 @@
     <title>Document</title>
   </head>
   <body>
-    <p id="textJuno"></p>
+    <h1>Subscriber List</h1>
+    <ul id="subscriberList"></ul>
 
-    <script>
-      const query = async () => {
-        const request = await fetch("http://localhost:3000/subscribers")
-          .then((res) => res.json())
-          .catch((err) => console.log(err));
+    UserName <input type="text" id="SubscriberName">
+    <button id="addSubscriber">Add Subscriber</button>
+    <br> <br>
+    User ID <input type="text" id="SubscriberID">
+    <button id="deleteSubscriber">Delete Subscriber</button>
 
-        let textJuno = document.querySelector("#textJuno");
-
-        textJuno.innerHTML = request[0].name;
-
-        console.log(request);
-      };
-
-      query();
-    </script>
+    <script src="/FrontEnd/subscriberQuery.js"></script>
   </body>
 </html>
