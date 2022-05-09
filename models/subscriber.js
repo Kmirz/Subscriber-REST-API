@@ -6,7 +6,7 @@ const subscriberSchema = new mongoose.Schema({
     required: true,
   },
 
-  subscribedToChannel: {
+  email: {
     type: String,
     required: true,
   },
@@ -15,6 +15,11 @@ const subscriberSchema = new mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now,
+  },
+
+  picture: {
+    type: String,
+    required: true,
   },
 });
 
