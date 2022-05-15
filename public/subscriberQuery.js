@@ -3,7 +3,7 @@ let subscriberListFull = [];
 const queryAll = async () => {
   let subscriberList = document.querySelector("#subscriberList");
   subscriberList.innerHTML = "";
-  const request = await fetch("http://localhost:3000/subscribers")
+  const request = await fetch("/subscribers")
     .then((res) => res.json())
     .then((res) => listSubscribers(res));
 };
@@ -109,10 +109,9 @@ const addSubscriber = async () => {
     body: JSON.stringify(userInput),
   };
 
-  const request = await fetch(
-    "http://localhost:3000/subscribers",
-    subscriberInfo
-  ).catch((err) => console.log(err));
+  const request = await fetch("/subscribers", subscriberInfo).catch((err) =>
+    console.log(err)
+  );
 
   document.querySelector("#SubscriberName").value = "";
 
@@ -130,7 +129,7 @@ const deleteSubscriber = async (event) => {
 
   console.log(subscriberID);
 
-  let fetchURL = "http://localhost:3000/subscribers/" + String(subscriberID);
+  let fetchURL = "/subscribers/" + String(subscriberID);
 
   let options = {
     method: "delete",
